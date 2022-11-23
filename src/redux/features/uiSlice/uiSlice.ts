@@ -28,7 +28,7 @@ const uiSlice = createSlice({
 export const uiReducer = uiSlice.reducer;
 
 export const {
-  openSuccessFeedback: openFeedbackActionCreator,
+  openSuccessFeedback: openSuccessFeedbackActionCreator,
   openErrorFeedback: openErrorFeedbackActionCreator,
   closeFeedback: closeFeedbackActionCreator,
 } = uiSlice.actions;
