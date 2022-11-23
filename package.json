@@ -51,7 +51,8 @@
   "jest": {
     "collectCoverageFrom": [
       "!src/index.tsx",
-      "!src/setupTests.ts"
+      "!src/setupTests.ts",
+      "!src/reportWebVitals.ts"
     ]
   }
 }
