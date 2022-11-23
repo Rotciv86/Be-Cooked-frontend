@@ -4,5 +4,10 @@ export interface UserRegisterData {
 }
 
 export interface UiState {
-  feedback: string;
+  feedback: {
+    isOpen: boolean;
+    messageFeedback: string;
+    isError: boolean;
+  };
+  isLoading: boolean;
 }
