@@ -1,12 +1,14 @@
-import { emptyFeedbackMock, mockInitialUiState } from "../../../mocks/uiMocks";
-import { UiState } from "../../../types/types";
+import { emptyFeedbackMock } from "../../../mocks/uiMocks";
+import { OpenFeedbackActionPayload, UiState } from "../../../types/types";
 import {
-  openErrorFeedbackActionCreator,
-  openSuccessFeedbackActionCreator,
+  closeFeedbackActionCreator,
+  openFeedbackActionCreator,
   uiReducer,
 } from "./uiSlice";
 
 describe("Given uiReducer", () => {
+  const currentUiState = emptyFeedbackMock;
+
   describe("When it recieves an initial state with an empty feedback and 'unknown' action", () => {
     test("Then it should return a new state with a copy of the empty feedback", () => {
       const unknownAction = {
@@ -14,18 +16,15 @@ describe("Given uiReducer", () => {
         payload: emptyFeedbackMock,
       };
 
-      const currentUiState = emptyFeedbackMock;
-
       const newUiState = uiReducer(currentUiState, unknownAction);
 
       expect(newUiState).toStrictEqual(currentUiState);
     });
   });
 
-  describe("When it recieves an initial state and 'openSuccessFeedback' action with a messageFeedback with 'Register was successful'", () => {
-    test("Then it should return a new state with the feedback received", () => {
-      const currentUiState: UiState = emptyFeedbackMock;
-      const newFeedback: UiState = {
+  describe("When it recieves an initial state and 'openFeedback' action with a messageFeedback with 'Register was successful' and is error false", () => {
+    test("Then it should return a new state with the isOpen property with value 'true' and the text and isError information received", () => {
+      const expectedState: UiState = {
         feedback: {
           isOpen: true,
           messageFeedback: "Register was successful",
@@ -33,19 +32,24 @@ describe("Given uiReducer", () => {
         },
         isLoading: false,
       };
+
+      const openFeedbackPayload: OpenFeedbackActionPayload = {
+        isError: expectedState.feedback.isError,
+        messageFeedback: expectedState.feedback.messageFeedback,
+      };
+
       const newUiState: UiState = uiReducer(
         currentUiState,
-        openSuccessFeedbackActionCreator(newFeedback)
+        openFeedbackActionCreator(openFeedbackPayload)
       );
 
-      expect(newUiState).toStrictEqual(newFeedback);
+      expect(newUiState).toStrictEqual(expectedState);
     });
   });
 
-  describe("When it recieves an initial state and 'openErrorFeedback' action with a messageFeedback with 'It succeded an error on registration'", () => {
-    test("Then it should return a new state with the feedback received", () => {
-      const currentUiState = emptyFeedbackMock;
-      const newFeedback = {
+  describe("When it recieves an initial state and 'openFeedback' action with a messageFeedback with 'There was an error on registration' and is error with value 'true'", () => {
+    test("Then it should return a new state with the isOpen property with value 'true' and the text and isError information received", () => {
+      const expectedState: UiState = {
         feedback: {
           isOpen: true,
           messageFeedback: "There was an error on registration",
@@ -54,19 +58,23 @@ describe("Given uiReducer", () => {
         isLoading: false,
       };
 
-      const newUiState = uiReducer(
+      const openFeedbackPayload: OpenFeedbackActionPayload = {
+        isError: expectedState.feedback.isError,
+        messageFeedback: expectedState.feedback.messageFeedback,
+      };
+
+      const newUiState: UiState = uiReducer(
         currentUiState,
-        openErrorFeedbackActionCreator(newFeedback)
+        openFeedbackActionCreator(openFeedbackPayload)
       );
 
-      expect(newUiState).toStrictEqual(newFeedback);
+      expect(newUiState).toStrictEqual(expectedState);
     });
   });
 
   describe("When it recieves an initial state and 'closeFeedback' action", () => {
-    test("Then it should return a new state with the feedback received", () => {
-      const currentUiState = mockInitialUiState;
-      const newFeedback = {
+    test("Then it should return a new state been a copy of initial state", () => {
+      const expectedState: UiState = {
         feedback: {
           isOpen: false,
           messageFeedback: "",
@@ -75,12 +83,12 @@ describe("Given uiReducer", () => {
         isLoading: false,
       };
 
-      const newUiState = uiReducer(
+      const newUiState: UiState = uiReducer(
         currentUiState,
-        openErrorFeedbackActionCreator(newFeedback)
+        closeFeedbackActionCreator()
       );
 
-      expect(newUiState).toStrictEqual(newFeedback);
+      expect(newUiState).toStrictEqual(expectedState);
     });
   });
 });
