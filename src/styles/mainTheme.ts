@@ -7,7 +7,7 @@ const secondary = "#113C2B";
 const mainTheme: DefaultTheme = {
   font: {
     base: 16,
-    family: "roboto",
+    family: "Roboto",
   },
   colors: {
     main: main,
