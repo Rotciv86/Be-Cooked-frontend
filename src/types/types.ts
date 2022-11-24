@@ -13,8 +13,6 @@ export interface UiState {
 }
 
 export interface OpenFeedbackActionPayload {
-  feedback: {
-    messageFeedback: string;
-    isError: boolean;
-  };
+  messageFeedback: string;
+  isError: boolean;
 }
