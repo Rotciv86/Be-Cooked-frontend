@@ -17,6 +17,10 @@ const mainTheme: DefaultTheme = {
     feedbackSuccess: "#A2C6BA",
     feedbackError: "#F6A8A8",
   },
+  borderRadius: {
+    big: "6px",
+    small: "4px",
+  },
   pxToRem: (value: number): string => `${value / mainTheme.font.base}rem`,
 };
 

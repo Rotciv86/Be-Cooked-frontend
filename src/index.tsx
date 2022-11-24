@@ -16,8 +16,8 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={mainTheme}>
         <GlobalStyles />
+        <App />
       </ThemeProvider>
-      <App />
     </Provider>
   </React.StrictMode>
 );
