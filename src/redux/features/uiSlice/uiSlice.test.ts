@@ -1,4 +1,4 @@
-import { emptyFeedbackMock, mockInitialUiState } from "../../../mocks/uiMocks";
+import { emptyFeedbackMock } from "../../../mocks/uiMocks";
 import { OpenFeedbackActionPayload, UiState } from "../../../types/types";
 import {
   closeFeedbackActionCreator,
