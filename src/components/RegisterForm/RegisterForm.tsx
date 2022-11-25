@@ -58,7 +58,7 @@ const RegisterForm = (): JSX.Element => {
           />
         </div>
       </div>
-      <Button text="Regístrate" action={() => {}} />
+      <Button text="Regístrate" className="register-button" action={() => {}} />
     </RegisterFormStyled>
   );
 };

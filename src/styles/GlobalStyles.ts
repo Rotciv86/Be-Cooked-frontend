@@ -3,10 +3,17 @@ import "@fontsource/roboto";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+:focus{
+  outline: none;
+}
   body {
-    color: ${(props) => props.theme.colors.secondary};
-        font-family: ${(props) => props.theme.font.family};
+    
+    font-family: roboto, sans-serif;
 
+  }
+
+  .container{
+    padding: 0 1rem;
   }
 `;
 

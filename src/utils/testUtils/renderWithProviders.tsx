@@ -8,6 +8,7 @@ import { uiReducer } from "../../redux/features/uiSlice/uiSlice";
 import { RootState, store } from "../../redux/store";
 import { InitialEntry } from "@remix-run/router";
 import { mainTheme } from "../../styles/mainTheme";
+import GlobalStyles from "../../styles/GlobalStyles";
 
 interface ExtendedRenderOptions extends RenderOptions {
   preloadedState?: PreloadedState<RootState>;
@@ -46,7 +47,10 @@ const renderWithProviders = (
     return (
       <Router>
         <Provider store={store}>
-          <ThemeProvider theme={mainTheme}>{children}</ThemeProvider>
+          <ThemeProvider theme={mainTheme}>
+            <GlobalStyles />
+            {children}
+          </ThemeProvider>
         </Provider>
       </Router>
     );
