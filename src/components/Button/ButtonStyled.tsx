@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { mainTheme } from "../../styles/mainTheme";
 
 const ButtonStyled = styled.button`
-  border-radius: ${(props) => props.theme.borderRadius.big};
-  background-color: ${(props) => props.theme.colors.upperMain};
+  border-radius: ${mainTheme.borderRadius.big};
+  background-color: ${mainTheme.colors.upperMain};
   color: #fff;
   height: 50px;
   width: 328px;
