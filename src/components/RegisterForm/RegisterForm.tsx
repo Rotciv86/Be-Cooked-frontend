@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useUser from "../../hooks/useUser";
 import { UserRegisterData } from "../../types/types";
-import ButtonStyled from "../Button/ButtonStyled";
+import Button from "../Button/Button";
 import RegisterFormStyled from "./RegisterFormStyled";
 
 const initialFormData: UserRegisterData = {
@@ -58,7 +58,7 @@ const RegisterForm = (): JSX.Element => {
           />
         </div>
       </div>
-      <ButtonStyled>Regístrate</ButtonStyled>
+      <Button text="Regístrate" action={() => {}} />
     </RegisterFormStyled>
   );
 };
