@@ -1,11 +1,11 @@
 import React from "react";
-import ButtonStyled from "../Button/ButtonStyled";
+import RegisterForm from "../RegisterForm/RegisterForm";
 
 const App = () => {
   return (
     <div className="container">
       <h1>Be Cooked</h1>
-      <ButtonStyled>Registrate</ButtonStyled>
+      <RegisterForm />
     </div>
   );
 };
