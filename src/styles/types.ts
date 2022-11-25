@@ -14,6 +14,10 @@ declare module "styled-components" {
       feedbackSuccess: string;
       feedbackError: string;
     };
+    borderRadius: {
+      big: string;
+      small: string;
+    };
     pxToRem: (value: number) => {};
   }
 }
