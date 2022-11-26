@@ -14,8 +14,10 @@ const mainTheme: DefaultTheme = {
     upperMain: upperMain,
     secondary: secondary,
     gray: "#B1B1B1",
-    feedbackSuccess: "#A2C6BA",
-    feedbackError: "#F6A8A8",
+    feedbackSuccess: "#3D7E68",
+    feedbackSuccessBackground: "#A2C6BA",
+    feedbackError: "#D54848",
+    feedbackErrorBackground: "#F6A8A8",
   },
   borderRadius: {
     big: "6px",

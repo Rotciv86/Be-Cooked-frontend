@@ -12,7 +12,9 @@ declare module "styled-components" {
       secondary: string;
       gray: string;
       feedbackSuccess: string;
+      feedbackSuccessBackground: string;
       feedbackError: string;
+      feedbackErrorBackground: string;
     };
     borderRadius: {
       big: string;
