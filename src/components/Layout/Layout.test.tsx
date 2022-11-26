@@ -6,9 +6,12 @@ describe("Given a Layout component", () => {
   describe("When its rendered and receives the route '/'", () => {
     test("Then it should show a RegisterForm component", () => {
       renderWithProviders(<Layout />, { initialEntries: ["/"] });
+      const usernameInput = screen.queryByRole("textbox", {
+        name: "Escribe tu nombre de usuario",
+      });
+      const passwordInput = screen.queryByLabelText("Crea una contraseña");
 
-      const usernameInput = screen.queryByLabelText("Crea una contraseña");
-
+      expect(passwordInput).toBeInTheDocument();
       expect(usernameInput).toBeInTheDocument();
     });
   });
