@@ -1,6 +1,6 @@
 import { useAppSelector } from "../../redux/hooks";
 import Feedback from "../Feedback/Feedback";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import Layout from "../Layout/Layout";
 
 const App = () => {
   const {
@@ -17,7 +17,7 @@ const App = () => {
           isError={isError}
         />
       )}
-      <RegisterForm />
+      <Layout />
     </div>
   );
 };
