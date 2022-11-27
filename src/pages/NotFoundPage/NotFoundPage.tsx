@@ -5,6 +5,9 @@ import huevo from "./huevo-frito-404.jpg";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
+  const navigateHome = () => {
+    navigate("/");
+  };
 
   return (
     <NotFoundPageStyled className="main-content">
@@ -21,7 +24,7 @@ const NotFoundPage = () => {
       </div>
       <div className="main-content__last-information">
         <span>PAGE NOT FOUND</span>
-        <Button text="VOLVER AL INICIO" action={() => navigate("/")} />
+        <Button text="VOLVER AL INICIO" action={navigateHome} />
       </div>
     </NotFoundPageStyled>
   );
