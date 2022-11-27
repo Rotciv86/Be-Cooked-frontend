@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import renderWithProviders from "../utils/testUtils/renderWithProviders";
+import renderWithProviders from "../../utils/testUtils/renderWithProviders";
 import RegisterPage from "./RegisterPage";
 
 describe("Given a RegisterPage", () => {
@@ -9,7 +9,7 @@ describe("Given a RegisterPage", () => {
 
       renderWithProviders(<RegisterPage />);
 
-      const heading = screen.queryByRole("heading", { level: 1 });
+      const heading = screen.queryByRole("heading", { level: 2 });
 
       expect(heading).toHaveTextContent(headingText);
     });

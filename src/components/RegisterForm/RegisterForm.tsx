@@ -61,7 +61,7 @@ const RegisterForm = (): JSX.Element => {
         </div>
       </div>
       <Button
-        text="Regístrate"
+        text="REGÍSTRATE"
         className="register-button"
         action={() => {}}
         isDisabled={!isNotEmpty}

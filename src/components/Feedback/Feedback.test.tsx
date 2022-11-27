@@ -11,7 +11,6 @@ jest.mock("../../redux/hooks", () => ({
   ...jest.requireActual("../../redux/hooks"),
   useAppDispatch: () => mockDispatch,
 }));
-// const dispatchSpy = jest.spyOn(store, "dispatch");
 
 jest.useFakeTimers();
 
