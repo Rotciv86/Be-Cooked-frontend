@@ -1,13 +1,14 @@
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import RegisterPageStyled from "./RegisterPageStyled";
 
 const RegisterPage = (): JSX.Element => {
   return (
-    <>
-      <h1 className="register-heading">
+    <RegisterPageStyled>
+      <h2 className="register-heading">
         ¡ÚNETE A BE COOKED, LA MEJOR PLATAFORMA DE RECETAS!
-      </h1>
+      </h2>
       <RegisterForm />
-    </>
+    </RegisterPageStyled>
   );
 };
 

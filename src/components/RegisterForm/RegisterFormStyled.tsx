@@ -2,16 +2,6 @@ import styled from "styled-components";
 import { mainTheme } from "../../styles/mainTheme";
 
 const RegisterFormStyled = styled.form`
-  .register-heading {
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    font-style: Regular;
-    font-size: 30px;
-    line-height: 33.88px;
-    line-height: 98%;
-    align-content: center;
-    vertical-align: top;
-    color: ${(props) => props.theme.colors.secondary};
-  }
   .register-form {
     display: flex;
     flex-direction: column;
