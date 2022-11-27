@@ -17,7 +17,6 @@ const Feedback = ({ messageFeedback, isOpen, isError }: FeedackProps) => {
       setTimeout(() => {
         dispatch(closeFeedbackActionCreator());
       }, 3131);
-      return;
     }
   }, [dispatch, isOpen]);
 
