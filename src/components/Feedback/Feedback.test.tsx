@@ -20,11 +20,7 @@ describe("Given the Feedback component", () => {
     const expectedFeedbackText = "¡Bienvenido a Be Cooked!";
 
     renderWithProviders(
-      <Feedback
-        messageFeedback={expectedFeedbackText}
-        isOpen={true}
-        isError={false}
-      />,
+      <Feedback messageFeedback={expectedFeedbackText} isError={false} />,
       {
         preloadedState: { ui: mockSuccessRegister, user: userInitialStateMock },
       }
@@ -44,16 +40,12 @@ describe("Given the Feedback component", () => {
   describe("When it's rendered with text 'It was not possible to register' and isError true", () => {
     test("Then it should show the received text", () => {
       const {
-        feedback: { isError, isOpen, messageFeedback },
+        feedback: { isError, messageFeedback },
       } = mockErrorRegister;
       const expectedFeedbackText = "It was not possible to register";
 
       renderWithProviders(
-        <Feedback
-          isError={isError}
-          isOpen={isOpen}
-          messageFeedback={messageFeedback}
-        />,
+        <Feedback isError={isError} messageFeedback={messageFeedback} />,
         {
           preloadedState: { ui: mockErrorRegister, user: userInitialStateMock },
         }
