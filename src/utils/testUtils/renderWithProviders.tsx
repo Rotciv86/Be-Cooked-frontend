@@ -36,6 +36,7 @@ const renderWithProviders = (
   ui: React.ReactElement,
   {
     preloadedState,
+    initialEntries,
     store = configureStore({
       reducer: { ui: uiReducer },
       preloadedState,
@@ -45,7 +46,7 @@ const renderWithProviders = (
 ) => {
   const Wrapper = ({ children }: PropsWithChildren<{}>): JSX.Element => {
     return (
-      <Router>
+      <Router initialEntries={initialEntries}>
         <Provider store={store}>
           <ThemeProvider theme={mainTheme}>
             <GlobalStyles />
