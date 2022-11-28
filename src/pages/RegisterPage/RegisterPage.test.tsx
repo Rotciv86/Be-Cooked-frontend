@@ -4,7 +4,7 @@ import RegisterPage from "./RegisterPage";
 
 describe("Given a RegisterPage", () => {
   describe("When its rendered", () => {
-    test("Then it should show a heading level 1 with text 'REGISTER'", () => {
+    test("Then it should show a heading level 2 with text 'REGISTER'", () => {
       const headingText = "¡ÚNETE A BE COOKED, LA MEJOR PLATAFORMA DE RECETAS!";
 
       renderWithProviders(<RegisterPage />);
