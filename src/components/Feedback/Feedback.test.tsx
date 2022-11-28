@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/react";
 import mockErrorRegister from "../../mocks/uiMocks/mockErrorRegister";
 import mockSuccessRegister from "../../mocks/uiMocks/mockSuccesRegister";
+import userInitialStateMock from "../../mocks/userMocks/userInitialStateMock";
 import { closeFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import renderWithProviders from "../../utils/testUtils/renderWithProviders";
 import Feedback from "./Feedback";
@@ -25,7 +26,7 @@ describe("Given the Feedback component", () => {
         isError={false}
       />,
       {
-        preloadedState: { ui: mockSuccessRegister },
+        preloadedState: { ui: mockSuccessRegister, user: userInitialStateMock },
       }
     );
     test("Then it should show the received text", () => {
@@ -53,7 +54,9 @@ describe("Given the Feedback component", () => {
           isOpen={isOpen}
           messageFeedback={messageFeedback}
         />,
-        { preloadedState: { ui: mockErrorRegister } }
+        {
+          preloadedState: { ui: mockErrorRegister, user: userInitialStateMock },
+        }
       );
 
       const modal = screen.queryByText(expectedFeedbackText);
