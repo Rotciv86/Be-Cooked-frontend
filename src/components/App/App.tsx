@@ -10,11 +10,7 @@ const App = () => {
   return (
     <div className="container">
       {isOpen && (
-        <Feedback
-          messageFeedback={messageFeedback}
-          isOpen={isOpen}
-          isError={isError}
-        />
+        <Feedback messageFeedback={messageFeedback} isError={isError} />
       )}
       <Layout />
     </div>

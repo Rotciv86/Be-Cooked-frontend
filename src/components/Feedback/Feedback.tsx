@@ -4,21 +4,18 @@ import { useAppDispatch } from "../../redux/hooks";
 import FeedbackStyled from "./FeedbackStyled";
 
 interface FeedackProps {
-  isOpen: boolean;
   messageFeedback: string;
   isError: boolean;
 }
 
-const Feedback = ({ messageFeedback, isOpen, isError }: FeedackProps) => {
+const Feedback = ({ messageFeedback, isError }: FeedackProps) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        dispatch(closeFeedbackActionCreator());
-      }, 3131);
-    }
-  }, [dispatch, isOpen]);
+    setTimeout(() => {
+      dispatch(closeFeedbackActionCreator());
+    }, 3131);
+  }, [dispatch]);
 
   return (
     <FeedbackStyled className={isError ? "feedback-error" : "feedback-success"}>
