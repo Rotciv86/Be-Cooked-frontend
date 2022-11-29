@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Recipe } from "../../../types/types";
 
-interface RecipeState {
+export interface RecipeState {
   recipes: Recipe[];
 }
 
@@ -10,23 +10,17 @@ export const RecipeInitialState: RecipeState = {
 };
 
 const recipesSlice = createSlice({
-  name: "recipe",
+  name: "recipes",
   initialState: RecipeInitialState,
   reducers: {
     loadAllRecipes: (initialState, action: PayloadAction<Recipe[]>) => ({
       ...initialState,
-      contacts: [...action.payload],
-    }),
-    loadRecipe: (initialState, action: PayloadAction<Recipe[]>) => ({
-      ...initialState,
-      contacts: [...action.payload],
+      recipes: [...action.payload],
     }),
   },
 });
 
 export const recipesReducer = recipesSlice.reducer;
 
-export const {
-  loadAllRecipes: loadAllRecipesActionCreator,
-  loadRecipe: loadRecipeActionCreator,
-} = recipesSlice.actions;
+export const { loadAllRecipes: loadAllRecipesActionCreator } =
+  recipesSlice.actions;

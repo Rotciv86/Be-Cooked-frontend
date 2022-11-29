@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import recipeInitialStateMock from "../../mocks/recipeMocks/recipeInitialState";
 import mockErrorRegister from "../../mocks/uiMocks/mockErrorRegister";
 import mockSuccessRegister from "../../mocks/uiMocks/mockSuccesRegister";
 import userInitialStateMock from "../../mocks/userMocks/userInitialStateMock";
@@ -22,7 +23,11 @@ describe("Given the Feedback component", () => {
     renderWithProviders(
       <Feedback messageFeedback={expectedFeedbackText} isError={false} />,
       {
-        preloadedState: { ui: mockSuccessRegister, user: userInitialStateMock },
+        preloadedState: {
+          ui: mockSuccessRegister,
+          user: userInitialStateMock,
+          recipes: recipeInitialStateMock,
+        },
       }
     );
     test("Then it should show the received text", () => {
@@ -47,7 +52,11 @@ describe("Given the Feedback component", () => {
       renderWithProviders(
         <Feedback isError={isError} messageFeedback={messageFeedback} />,
         {
-          preloadedState: { ui: mockErrorRegister, user: userInitialStateMock },
+          preloadedState: {
+            ui: mockErrorRegister,
+            user: userInitialStateMock,
+            recipes: recipeInitialStateMock,
+          },
         }
       );
 
