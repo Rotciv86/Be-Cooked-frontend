@@ -26,3 +26,14 @@ export interface UserLoginData {
 export interface UserState extends UserLoginData {
   isLogged: boolean;
 }
+
+export interface Recipe {
+  name: string;
+  category: string;
+  image: string;
+  ingredients: string[];
+  steps: string[];
+  imageBackup: string;
+  owner: string;
+  id?: string;
+}
