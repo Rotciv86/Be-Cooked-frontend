@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { UserRegisterData } from "../types/types";
-import mockRecipes from "./recipeMocks/mockRecipe";
+import { mockRecipes, mockUseRecipes } from "./recipeMocks/mockRecipe";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -17,11 +17,11 @@ const handlers = [
     return res(ctx.status(201), ctx.json({ user }));
   }),
 
-  rest.get(`${apiUrl}/recipes`, async (req, res, ctx) => {
-    return res.once(ctx.status(200), ctx.json(mockRecipes));
+  rest.get(`${apiUrl}/recipes/list`, async (req, res, ctx) => {
+    return res.once(ctx.status(200), ctx.json(mockUseRecipes));
   }),
 
-  rest.get(`${apiUrl}/recipes`, async (req, res, ctx) => {
+  rest.get(`${apiUrl}/recipes/list`, async (req, res, ctx) => {
     return res.once(
       ctx.status(404),
       ctx.json({ error: "¡Ups, no hay recetas para mostrar!" })

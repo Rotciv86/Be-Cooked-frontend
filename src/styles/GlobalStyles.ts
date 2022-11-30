@@ -12,6 +12,10 @@ const GlobalStyles = createGlobalStyle`
 
   }
 
+  ul {
+    list-style: none;
+  }
+
   .container{
     padding: 1rem;
   }

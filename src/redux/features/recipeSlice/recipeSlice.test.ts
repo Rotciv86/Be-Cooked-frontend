@@ -1,4 +1,4 @@
-import mockRecipes from "../../../mocks/recipeMocks/mockRecipe";
+import { mockRecipes } from "../../../mocks/recipeMocks/mockRecipe";
 import recipeInitialStateMock from "../../../mocks/recipeMocks/recipeInitialState";
 import {
   loadAllRecipesActionCreator,

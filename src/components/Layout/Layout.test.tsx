@@ -5,7 +5,7 @@ import Layout from "./Layout";
 describe("Given a Layout component", () => {
   describe("When its rendered and receives the route '/'", () => {
     test("Then it should show a RegisterForm component", () => {
-      renderWithProviders(<Layout />, { initialEntries: ["/"] });
+      renderWithProviders(<Layout />, { initialEntries: ["/register"] });
       const usernameInput = screen.queryByRole("textbox", {
         name: "Escribe tu nombre de usuario",
       });

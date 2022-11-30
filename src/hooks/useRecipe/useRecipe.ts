@@ -10,8 +10,13 @@ const useRecipe = () => {
 
   const loadAllRecipes = useCallback(async () => {
     try {
-      const response = await axios.get(`${apiUrl}/recipes`);
-      dispatch(loadAllRecipesActionCreator(response.data));
+      const response = await axios.get(`${apiUrl}/recipes/list`);
+
+      const apiResponse = response.data;
+
+      const { recipes } = apiResponse;
+
+      dispatch(loadAllRecipesActionCreator(recipes));
     } catch (error: unknown) {
       dispatch(
         openFeedbackActionCreator({
