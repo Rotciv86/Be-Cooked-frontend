@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import ProviderWrapper from "../../mocks/providerWrapper";
-import mockRecipes from "../../mocks/recipeMocks/mockRecipe";
+import { mockRecipes } from "../../mocks/recipeMocks/mockRecipe";
 import { loadAllRecipesActionCreator } from "../../redux/features/recipeSlice/recipeSlice";
 import { openFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { store } from "../../redux/store";
