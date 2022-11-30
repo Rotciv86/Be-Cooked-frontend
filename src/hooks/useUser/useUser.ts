@@ -1,8 +1,8 @@
 import axios, { AxiosError } from "axios";
-import { openFeedbackActionCreator } from "../redux/features/uiSlice/uiSlice";
-import { useAppDispatch } from "../redux/hooks";
-import { OpenFeedbackActionPayload, UserRegisterData } from "../types/types";
-import { AxiosResponseBody } from "./types";
+import { openFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import { useAppDispatch } from "../../redux/hooks";
+import { OpenFeedbackActionPayload, UserRegisterData } from "../../types/types";
+import { AxiosResponseBody } from "../types";
 
 const useUser = () => {
   const apiUrl = process.env.REACT_APP_API_URL!;
