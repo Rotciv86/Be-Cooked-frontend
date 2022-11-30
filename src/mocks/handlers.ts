@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { UserRegisterData } from "../types/types";
-import { mockRecipes, mockUseRecipes } from "./recipeMocks/mockRecipe";
+import { mockUseRecipes } from "./recipeMocks/mockRecipe";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
