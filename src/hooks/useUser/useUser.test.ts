@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
-import ProviderWrapper from "../mocks/providerWrapper";
-import { openFeedbackActionCreator } from "../redux/features/uiSlice/uiSlice";
-import { store } from "../redux/store";
-import { OpenFeedbackActionPayload, UserRegisterData } from "../types/types";
+import ProviderWrapper from "../../mocks/providerWrapper";
+import { openFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import { store } from "../../redux/store";
+import { OpenFeedbackActionPayload, UserRegisterData } from "../../types/types";
 import useUser from "./useUser";
 
 const dispatchSpy = jest.spyOn(store, "dispatch");
