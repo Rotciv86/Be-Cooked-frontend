@@ -15,7 +15,7 @@ const GlobalStyles = createGlobalStyle`
 
   a{
     text-decoration: none;
-     color: ${mainTheme.colors.secondary};
+    color: ${mainTheme.colors.secondary};
   }
 
   ul {
