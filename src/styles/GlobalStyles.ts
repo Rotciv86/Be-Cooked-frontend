@@ -1,6 +1,7 @@
 import "modern-normalize";
 import "@fontsource/roboto";
 import { createGlobalStyle } from "styled-components";
+import { mainTheme } from "./mainTheme";
 
 const GlobalStyles = createGlobalStyle`
 :focus{
@@ -10,6 +11,11 @@ const GlobalStyles = createGlobalStyle`
     
     font-family: roboto, sans-serif;
 
+  }
+
+  a{
+    text-decoration: none;
+     color: ${mainTheme.colors.secondary};
   }
 
   ul {
