@@ -3,10 +3,10 @@ import HomePageStyled from "./HomePageStyled";
 
 const HomePage = (): JSX.Element => {
   return (
-    <HomePageStyled className="home-page">
-      <div className="home-hero-image">
-        <h1 className="home-heading">Prepara tu propia receta...</h1>
-      </div>
+    <HomePageStyled>
+      <header className="header">
+        <h1 className="header__main-title">Prepara tu propia receta...</h1>
+      </header>
       <RecipeList />
     </HomePageStyled>
   );
