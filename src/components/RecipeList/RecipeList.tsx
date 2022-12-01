@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useRecipe from "../../hooks/useRecipe/useRecipe";
 import { useAppSelector } from "../../redux/hooks";
-import RecipeCardStyled from "../RecipeCard/RecipeCardStyled";
+import RecipeCard from "../RecipeCard/RecipeCard";
 import RecipeListStyled from "./RecipeListStyled";
 
 const RecipeList = (): JSX.Element => {
@@ -14,16 +14,9 @@ const RecipeList = (): JSX.Element => {
   return (
     <RecipeListStyled className="recipe-list">
       {recipesList.map((recipe, index) => (
-        <RecipeCardStyled key={index}>
-          <img
-            src={recipe.image}
-            alt={recipe.name}
-            width="300"
-            height="300"
-            className="img-fluid"
-          />
-          <h2>{recipe.name}</h2>
-        </RecipeCardStyled>
+        <li>
+          <RecipeCard image={recipe.image} name={recipe.name} key={index} />
+        </li>
       ))}
     </RecipeListStyled>
   );
