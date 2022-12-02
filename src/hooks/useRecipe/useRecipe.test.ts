@@ -1,7 +1,10 @@
 import { renderHook } from "@testing-library/react";
 import ProviderWrapper from "../../mocks/providerWrapper";
 import { mockRecipes } from "../../mocks/recipeMocks/mockRecipe";
-import { loadAllRecipesActionCreator } from "../../redux/features/recipeSlice/recipeSlice";
+import {
+  deleteRecipeActionCreator,
+  loadAllRecipesActionCreator,
+} from "../../redux/features/recipeSlice/recipeSlice";
 import { openFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { store } from "../../redux/store";
 import { OpenFeedbackActionPayload } from "../../types/types";
@@ -42,6 +45,47 @@ describe("Given the useRecipe custom hook", () => {
 
       expect(dispatchSpy).toHaveBeenCalledWith(
         openFeedbackActionCreator(expectedFeedbackPayload)
+      );
+    });
+  });
+
+  describe("When it's method deleteVenue is invoked with a venueId", () => {
+    test("Then it should invoke dispatch with deleteVenueActionCreator and the received venueId", async () => {
+      const {
+        result: {
+          current: { deleteRecipe },
+        },
+      } = renderHook(() => useRecipe(), {
+        wrapper: ProviderWrapper,
+      });
+      const { id: testRecipeId } = mockRecipes[0];
+
+      await deleteRecipe(testRecipeId as string);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        deleteRecipeActionCreator(testRecipeId as string)
+      );
+    });
+  });
+
+  describe("When it's method deleteRecipe is invoked and the request fails", () => {
+    test("Then it shoould invoke dispatch with openFeedbackActionCreator with and error", async () => {
+      const {
+        result: {
+          current: { deleteRecipe },
+        },
+      } = renderHook(() => useRecipe(), {
+        wrapper: ProviderWrapper,
+      });
+      const { id: testRecipeId } = mockRecipes[0];
+
+      await deleteRecipe(testRecipeId as string);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        openFeedbackActionCreator({
+          isError: true,
+          messageFeedback: "Something went wrong",
+        })
       );
     });
   });
