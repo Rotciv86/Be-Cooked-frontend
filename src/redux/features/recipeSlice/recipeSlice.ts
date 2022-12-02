@@ -17,10 +17,20 @@ const recipesSlice = createSlice({
       ...initialState,
       recipes: [...action.payload],
     }),
+    deleteRecipe: (initialState, action: PayloadAction<string>) => ({
+      ...initialState,
+      recipes: [
+        ...initialState.recipes.filter(
+          (recipe) => recipe.id !== action.payload
+        ),
+      ],
+    }),
   },
 });
 
 export const recipesReducer = recipesSlice.reducer;
 
-export const { loadAllRecipes: loadAllRecipesActionCreator } =
-  recipesSlice.actions;
+export const {
+  loadAllRecipes: loadAllRecipesActionCreator,
+  deleteRecipe: deleteRecipeActionCreator,
+} = recipesSlice.actions;
