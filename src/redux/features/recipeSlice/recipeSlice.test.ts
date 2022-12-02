@@ -1,6 +1,7 @@
 import { mockRecipes } from "../../../mocks/recipeMocks/mockRecipe";
 import recipeInitialStateMock from "../../../mocks/recipeMocks/recipeInitialState";
 import {
+  deleteRecipeActionCreator,
   loadAllRecipesActionCreator,
   RecipeInitialState,
   recipesReducer,
@@ -33,6 +34,26 @@ describe("Given the function recipeSlice", () => {
       const newState = recipesReducer(RecipeInitialState, action);
 
       expect(newState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When it's invoked with its method delteRecipe and a valid id in its payload", () => {
+    test("Then it should return a new state without the received recipe", () => {
+      const currentRecipesState: RecipeState = {
+        recipes: mockRecipes,
+      };
+      const recipeToDelete = mockRecipes[1];
+      const deleteRecipeAction = deleteRecipeActionCreator(
+        recipeToDelete.id as string
+      );
+      const expectedRecipesState: RecipeState = { recipes: [mockRecipes[0]] };
+
+      const newRecipesState = recipesReducer(
+        currentRecipesState,
+        deleteRecipeAction
+      );
+
+      expect(newRecipesState).toStrictEqual(expectedRecipesState);
     });
   });
 });
