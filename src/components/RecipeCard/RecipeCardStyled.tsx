@@ -15,6 +15,16 @@ const RecipeCardStyled = styled.article`
   h2 {
     font-size: ${mainTheme.pxToRem(24)};
   }
+
+  .recipe-card__delete-button {
+    margin: 1rem;
+    &:hover,
+    &:focus {
+      background-color: #fff;
+      color: ${mainTheme.colors.upperMain};
+      border: 1px solid ${mainTheme.colors.upperMain};
+    }
+  }
 `;
 
 export default RecipeCardStyled;

@@ -17,7 +17,7 @@ const HeaderStyled = styled.header`
   .header__title {
     font-style: normal;
     font-weight: 700;
-    font-size: 33px;
+    font-size: ${mainTheme.pxToRem(33)};
     line-height: 56px;
     letter-spacing: 0.024px;
     color: ${mainTheme.colors.main};

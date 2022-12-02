@@ -15,7 +15,7 @@ const RecipeList = (): JSX.Element => {
     <RecipeListStyled className="recipe-list">
       {recipesList.map((recipe, index) => (
         <li key={index}>
-          <RecipeCard image={recipe.image} name={recipe.name} />
+          <RecipeCard image={recipe.image} name={recipe.name} id={recipe.id!} />
         </li>
       ))}
     </RecipeListStyled>

@@ -9,7 +9,11 @@ describe("Given the RecipeCard ui component", () => {
       const recipeName = "Arroz caldoso con bogavante";
 
       renderWithProviders(
-        <RecipeCard image={mockRecipes[0].image} name={mockRecipes[0].name} />
+        <RecipeCard
+          image={mockRecipes[0].image}
+          name={mockRecipes[0].name}
+          id={mockRecipes[0].id!}
+        />
       );
 
       const recipeCard = screen.queryByRole("heading", {
