@@ -1,8 +1,9 @@
 import { rest } from "msw";
 import { UserRegisterData } from "../types/types";
-import { mockUseRecipes } from "./recipeMocks/mockRecipe";
+import { mockRecipes, mockUseRecipes } from "./recipeMocks/mockRecipe";
 
 const apiUrl = process.env.REACT_APP_API_URL;
+const { id } = mockRecipes[0];
 
 const handlers = [
   rest.post(`${apiUrl}/users/sign-up`, async (req, res, ctx) => {
@@ -25,6 +26,17 @@ const handlers = [
     return res.once(
       ctx.status(404),
       ctx.json({ error: "¡Ups, no hay recetas para mostrar!" })
+    );
+  }),
+
+  rest.delete(`${apiUrl}/recipes/delete/${id}`, async (req, res, ctx) => {
+    return res.once(ctx.status(200));
+  }),
+
+  rest.delete(`${apiUrl}/recipes/delete/${id}`, async (req, res, ctx) => {
+    return res.once(
+      ctx.status(500),
+      ctx.json({ error: "Something went wrong" })
     );
   }),
 ];
