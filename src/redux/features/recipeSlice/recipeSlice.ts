@@ -25,6 +25,10 @@ const recipesSlice = createSlice({
         ),
       ],
     }),
+    createRecipe: (initialState, action: PayloadAction<Recipe>) => ({
+      ...initialState,
+      recipes: [...initialState.recipes, action.payload],
+    }),
   },
 });
 
@@ -33,4 +37,5 @@ export const recipesReducer = recipesSlice.reducer;
 export const {
   loadAllRecipes: loadAllRecipesActionCreator,
   deleteRecipe: deleteRecipeActionCreator,
+  createRecipe: createRecipeActionCreator,
 } = recipesSlice.actions;

@@ -49,8 +49,8 @@ describe("Given the useRecipe custom hook", () => {
     });
   });
 
-  describe("When it's method deleteVenue is invoked with a venueId", () => {
-    test("Then it should invoke dispatch with deleteVenueActionCreator and the received venueId", async () => {
+  describe("When it's method deleteRecipe is invoked with a recipeId", () => {
+    test("Then it should invoke dispatch with deleteRecipeActionCreator and the received recipeId", async () => {
       const {
         result: {
           current: { deleteRecipe },
