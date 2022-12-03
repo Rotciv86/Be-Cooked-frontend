@@ -1,6 +1,11 @@
-import { mockRecipes } from "../../../mocks/recipeMocks/mockRecipe";
+import {
+  mockRecipe,
+  mockRecipes,
+  mockRecipesAdded,
+} from "../../../mocks/recipeMocks/mockRecipe";
 import recipeInitialStateMock from "../../../mocks/recipeMocks/recipeInitialState";
 import {
+  createRecipeActionCreator,
   deleteRecipeActionCreator,
   loadAllRecipesActionCreator,
   RecipeInitialState,
@@ -54,6 +59,24 @@ describe("Given the function recipeSlice", () => {
       );
 
       expect(newRecipesState).toStrictEqual(expectedRecipesState);
+    });
+  });
+
+  describe("When it's invoked with its reducer createRecipe reducer and a new recipe in its payload", () => {
+    test("Then it should return a new state with the received recipe added in it", () => {
+      const currentRecipesState: RecipeState = {
+        recipes: mockRecipes,
+      };
+      const recipeToCreate = mockRecipe;
+
+      const expectedRecipesState: RecipeState = { recipes: mockRecipesAdded };
+
+      const recipesSliceState = recipesReducer(
+        currentRecipesState,
+        createRecipeActionCreator(recipeToCreate)
+      );
+
+      expect(recipesSliceState).toStrictEqual(expectedRecipesState);
     });
   });
 });
