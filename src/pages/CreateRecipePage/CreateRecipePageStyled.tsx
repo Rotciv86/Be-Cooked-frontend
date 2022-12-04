@@ -2,21 +2,10 @@ import styled from "styled-components";
 import { mainTheme } from "../../styles/mainTheme";
 import hero from "./hero-image-carrots.webp";
 
-const HomePageStyled = styled.div`
+const CreateRecipePageStyled = styled.div`
   gap: 50px;
   display: flex;
   flex-direction: column;
-
-  a {
-    border-radius: ${(props) => props.theme.borderRadius.big};
-    font-weight: 400;
-    font-size: 20px;
-    background-color: #fff;
-    color: ${mainTheme.colors.upperMain};
-    border: 2px solid ${mainTheme.colors.upperMain};
-    text-align: center;
-    padding: ${mainTheme.pxToRem(12)};
-  }
   .header {
     margin: -1rem;
     display: flex;
@@ -42,4 +31,4 @@ const HomePageStyled = styled.div`
   }
 `;
 
-export default HomePageStyled;
+export default CreateRecipePageStyled;

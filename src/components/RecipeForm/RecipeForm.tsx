@@ -48,6 +48,7 @@ const RecipeForm = (): JSX.Element => {
             autoComplete="off"
             onChange={handleFormChange}
             value={formData.name}
+            placeholder="Escribe el nombre de la receta"
             required
           />
         </div>
@@ -60,6 +61,7 @@ const RecipeForm = (): JSX.Element => {
             autoComplete="off"
             onChange={handleFormChange}
             value={formData.category}
+            placeholder="Indica la categoría del plato"
             required
           />
         </div>
@@ -73,6 +75,7 @@ const RecipeForm = (): JSX.Element => {
             autoComplete="off"
             onChange={handleFormChange}
             value={formData.image}
+            placeholder="Introduce una url de imagen válida"
             required
           />
         </div>
@@ -86,6 +89,7 @@ const RecipeForm = (): JSX.Element => {
             autoComplete="off"
             onChange={handleFormChange}
             value={formData.ingredients}
+            placeholder="Introduce los ingredientes separados por comas"
             required
           />
         </div>
@@ -99,6 +103,7 @@ const RecipeForm = (): JSX.Element => {
             autoComplete="off"
             onChange={handleFormChange}
             value={formData.steps}
+            placeholder="Introduce los pasos separados por comas"
             required
           />
         </div>
