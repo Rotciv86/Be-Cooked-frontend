@@ -33,7 +33,18 @@ export interface Recipe {
   image: string;
   ingredients: string[];
   steps: string[];
-  imageBackup: string;
-  owner: string;
+  imageBackup?: string;
+  owner?: string;
+  id?: string;
+}
+
+export interface RecipePreForm {
+  name: string;
+  category: string;
+  image: string;
+  ingredients: string;
+  steps: string;
+  imageBackup?: string;
+  owner?: string;
   id?: string;
 }
