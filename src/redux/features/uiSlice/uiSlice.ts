@@ -13,16 +13,26 @@ const uiSlice = createSlice({
     openFeedback: (
       previousUi,
       action: PayloadAction<OpenFeedbackActionPayload>
-    ) => ({
+    ): UiState => ({
       ...previousUi,
       feedback: {
         ...action.payload,
         isOpen: true,
       },
     }),
-    closeFeedback: (previousUi) => ({
+    closeFeedback: (previousUi): UiState => ({
       ...previousUi,
       feedback: uiInitialState.feedback,
+    }),
+
+    openLoading: (previousUi): UiState => ({
+      ...previousUi,
+      isLoading: true,
+    }),
+
+    closeLoading: (previousUi): UiState => ({
+      ...previousUi,
+      isLoading: false,
     }),
   },
 });
@@ -32,4 +42,6 @@ export const uiReducer = uiSlice.reducer;
 export const {
   openFeedback: openFeedbackActionCreator,
   closeFeedback: closeFeedbackActionCreator,
+  openLoading: openLoadingActionCreator,
+  closeLoading: closeLoadingActionCreator,
 } = uiSlice.actions;

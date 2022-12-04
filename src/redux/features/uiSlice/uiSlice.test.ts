@@ -1,8 +1,11 @@
 import { emptyFeedbackMock } from "../../../mocks/uiMocks";
+import { mockInitialStateLoading } from "../../../mocks/uiMocks/mocksLoading";
 import { OpenFeedbackActionPayload, UiState } from "../../../types/types";
 import {
   closeFeedbackActionCreator,
+  closeLoadingActionCreator,
   openFeedbackActionCreator,
+  openLoadingActionCreator,
   uiReducer,
 } from "./uiSlice";
 
@@ -89,6 +92,36 @@ describe("Given uiReducer", () => {
       );
 
       expect(newUiState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When it receives an initial state with isLoading property with value false and openLoading action", () => {
+    test("Then it should return a new state with isLoading property with value to true", () => {
+      const previoustUiState: UiState = mockInitialStateLoading;
+      const expectedUiState: UiState = {
+        ...previoustUiState,
+        isLoading: true,
+      };
+
+      const openLoadingAction = openLoadingActionCreator();
+      const newUiState = uiReducer(previoustUiState, openLoadingAction);
+
+      expect(newUiState).toStrictEqual(expectedUiState);
+    });
+  });
+
+  describe("When it receives an initial state with isLoading property with value true and closeLoading action", () => {
+    test("Then it should return a new state with isLoading property with value to false", () => {
+      const currentUiState: UiState = mockInitialStateLoading;
+      const expectedUiState: UiState = {
+        ...currentUiState,
+        isLoading: false,
+      };
+
+      const closeLoadingAction = closeLoadingActionCreator();
+      const newUiState = uiReducer(currentUiState, closeLoadingAction);
+
+      expect(newUiState).toStrictEqual(expectedUiState);
     });
   });
 });

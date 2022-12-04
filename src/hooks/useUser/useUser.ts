@@ -1,5 +1,9 @@
 import axios, { AxiosError } from "axios";
-import { openFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  closeLoadingActionCreator,
+  openFeedbackActionCreator,
+  openLoadingActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { OpenFeedbackActionPayload, UserRegisterData } from "../../types/types";
 import { AxiosResponseBody } from "../types";
@@ -9,6 +13,7 @@ const useUser = () => {
   const dispatch = useAppDispatch();
 
   const registerUser = async (userData: UserRegisterData) => {
+    dispatch(openLoadingActionCreator());
     try {
       await axios.post(`${apiUrl}/users/sign-up`, userData);
 
@@ -16,7 +21,7 @@ const useUser = () => {
         messageFeedback: `User ${userData.username} registered successfully`,
         isError: false,
       };
-
+      dispatch(closeLoadingActionCreator());
       dispatch(openFeedbackActionCreator(feedbackSuccessPayload));
     } catch (error: unknown) {
       const feedbackErrorPayload: OpenFeedbackActionPayload = {
@@ -25,6 +30,8 @@ const useUser = () => {
         ).response?.data.error!}`,
         isError: true,
       };
+      dispatch(closeLoadingActionCreator());
+
       dispatch(openFeedbackActionCreator(feedbackErrorPayload));
     }
   };

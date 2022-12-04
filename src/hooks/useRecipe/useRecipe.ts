@@ -6,7 +6,11 @@ import {
   deleteRecipeActionCreator,
   loadAllRecipesActionCreator,
 } from "../../redux/features/recipeSlice/recipeSlice";
-import { openFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  closeLoadingActionCreator,
+  openFeedbackActionCreator,
+  openLoadingActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import { Recipe } from "../../types/types";
 import { AxiosResponseBody } from "../types";
@@ -17,15 +21,19 @@ const useRecipe = () => {
   const navigate = useNavigate();
 
   const loadAllRecipes = useCallback(async () => {
+    dispatch(openLoadingActionCreator());
     try {
       const response = await axios.get(`${apiUrl}/recipes/list`);
 
       const apiResponse = response.data;
 
       const { recipes } = apiResponse;
+      dispatch(closeLoadingActionCreator());
 
       dispatch(loadAllRecipesActionCreator(recipes));
     } catch (error: unknown) {
+      dispatch(closeLoadingActionCreator());
+
       dispatch(
         openFeedbackActionCreator({
           isError: true,
@@ -36,9 +44,12 @@ const useRecipe = () => {
   }, [dispatch, apiUrl]);
 
   const deleteRecipe = async (recipeId: string) => {
+    dispatch(openLoadingActionCreator());
     try {
       await axios.delete(`${apiUrl}/recipes/delete/${recipeId}`, {});
       dispatch(deleteRecipeActionCreator(recipeId));
+      dispatch(closeLoadingActionCreator());
+
       dispatch(
         openFeedbackActionCreator({
           isError: false,
@@ -46,6 +57,8 @@ const useRecipe = () => {
         })
       );
     } catch (error: unknown) {
+      dispatch(closeLoadingActionCreator());
+
       dispatch(
         openFeedbackActionCreator({
           isError: true,
@@ -57,8 +70,10 @@ const useRecipe = () => {
   };
 
   const createRecipe = async (recipeData: Recipe) => {
+    dispatch(openLoadingActionCreator());
     try {
       await axios.post(`${apiUrl}/recipes/create`, recipeData);
+      dispatch(closeLoadingActionCreator());
 
       dispatch(
         openFeedbackActionCreator({
@@ -68,6 +83,8 @@ const useRecipe = () => {
       );
       navigate("/");
     } catch (error: unknown) {
+      dispatch(closeLoadingActionCreator());
+
       dispatch(
         openFeedbackActionCreator({
           isError: true,
