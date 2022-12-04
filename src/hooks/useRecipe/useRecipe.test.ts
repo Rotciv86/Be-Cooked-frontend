@@ -1,6 +1,6 @@
-import { renderHook } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import ProviderWrapper from "../../mocks/providerWrapper";
-import { mockRecipes } from "../../mocks/recipeMocks/mockRecipe";
+import { mockRecipe, mockRecipes } from "../../mocks/recipeMocks/mockRecipe";
 import {
   deleteRecipeActionCreator,
   loadAllRecipesActionCreator,
@@ -86,6 +86,56 @@ describe("Given the useRecipe custom hook", () => {
           isError: true,
           messageFeedback: "Something went wrong",
         })
+      );
+    });
+  });
+
+  describe("When it's method createRecipe is invoked with a correct recipe type", () => {
+    test("Then it should invoke dispatch with openFeedbackActionCreator with text 'La receta ha sido creada correctamente'", async () => {
+      const {
+        result: {
+          current: { createRecipe },
+        },
+      } = renderHook(() => useRecipe(), {
+        wrapper: ProviderWrapper,
+      });
+      const newRecipe = mockRecipe;
+      const feedbackPayload: OpenFeedbackActionPayload = {
+        isError: false,
+        messageFeedback: "La receta ha sido creada correctamente",
+      };
+
+      await act(async () => await createRecipe(newRecipe));
+
+      await waitFor(() =>
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          openFeedbackActionCreator(feedbackPayload)
+        )
+      );
+    });
+  });
+
+  describe("When it's method createRecipe is invoked and rejects it", () => {
+    test("Then it should invoke dispatch with openFeedbackActionCreator with text 'Error, no ha sido posible crear la receta'", async () => {
+      const {
+        result: {
+          current: { createRecipe },
+        },
+      } = renderHook(() => useRecipe(), {
+        wrapper: ProviderWrapper,
+      });
+      const newRecipe = mockRecipe;
+      const feedbackPayload: OpenFeedbackActionPayload = {
+        isError: true,
+        messageFeedback: "Error, no ha sido posible crear la receta",
+      };
+
+      await act(async () => await createRecipe(newRecipe));
+
+      await waitFor(() =>
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          openFeedbackActionCreator(feedbackPayload)
+        )
       );
     });
   });
