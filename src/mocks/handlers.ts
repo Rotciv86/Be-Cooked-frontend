@@ -1,5 +1,5 @@
 import { rest } from "msw";
-import { UserRegisterData } from "../types/types";
+import { Recipe, UserRegisterData } from "../types/types";
 import { mockRecipes, mockUseRecipes } from "./recipeMocks/mockRecipe";
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -37,6 +37,18 @@ const handlers = [
     return res.once(
       ctx.status(500),
       ctx.json({ error: "Something went wrong" })
+    );
+  }),
+
+  rest.post(`${apiUrl}/recipes/create`, async (req, res, ctx) => {
+    const recipe = await req.json<Recipe>();
+    return res.once(ctx.status(201), ctx.json({ recipe }));
+  }),
+
+  rest.post(`${apiUrl}/recipes/create`, async (req, res, ctx) => {
+    return res.once(
+      ctx.status(500),
+      ctx.json({ error: "Error, no ha sido posible crear la receta" })
     );
   }),
 ];

@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+
 import {
   deleteRecipeActionCreator,
   loadAllRecipesActionCreator,
@@ -11,8 +12,8 @@ import { Recipe } from "../../types/types";
 import { AxiosResponseBody } from "../types";
 
 const useRecipe = () => {
-  const apiUrl = process.env.REACT_APP_API_URL;
   const dispatch = useAppDispatch();
+  const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   const loadAllRecipes = useCallback(async () => {
@@ -56,15 +57,15 @@ const useRecipe = () => {
   };
 
   const createRecipe = async (recipeData: Recipe) => {
-    const feedbackCreated = {
-      isError: false,
-      messageFeedback: "La receta ha sido creada correctamente",
-    };
-
     try {
-      await axios.post(`${apiUrl}recipes/create`, recipeData);
+      await axios.post(`${apiUrl}/recipes/create`, recipeData);
 
-      dispatch(openFeedbackActionCreator(feedbackCreated));
+      dispatch(
+        openFeedbackActionCreator({
+          isError: false,
+          messageFeedback: "La receta ha sido creada correctamente",
+        })
+      );
       navigate("/");
     } catch (error: unknown) {
       dispatch(

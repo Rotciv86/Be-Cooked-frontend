@@ -1,4 +1,5 @@
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { store } from "../redux/store";
 
 interface ProviderWrapperProps {
@@ -6,7 +7,11 @@ interface ProviderWrapperProps {
 }
 
 const ProviderWrapper = ({ children }: ProviderWrapperProps) => {
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <BrowserRouter>
+      <Provider store={store}>{children}</Provider>
+    </BrowserRouter>
+  );
 };
 
 export default ProviderWrapper;
