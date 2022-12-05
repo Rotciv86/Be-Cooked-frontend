@@ -4,6 +4,7 @@ import {
   mockRecipesAdded,
 } from "../../../mocks/recipeMocks/mockRecipe";
 import recipeInitialStateMock from "../../../mocks/recipeMocks/recipeInitialState";
+import { Recipe } from "../../../types/types";
 import {
   createRecipeActionCreator,
   deleteRecipeActionCreator,
@@ -35,6 +36,7 @@ describe("Given the function recipeSlice", () => {
       const action = loadAllRecipesActionCreator(mockRecipes);
       const expectedState: RecipeState = {
         recipes: mockRecipes,
+        recipe: {} as Recipe,
       };
 
       const newState = recipesReducer(RecipeInitialState, action);

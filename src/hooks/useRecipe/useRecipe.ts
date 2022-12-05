@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   deleteRecipeActionCreator,
+  getRecipeByIdActionCreator,
   loadAllRecipesActionCreator,
 } from "../../redux/features/recipeSlice/recipeSlice";
 import {
@@ -94,7 +95,29 @@ const useRecipe = () => {
     }
   };
 
-  return { loadAllRecipes, deleteRecipe, createRecipe };
+  const getRecipeById = async (recipeId: string) => {
+    dispatch(openLoadingActionCreator());
+    try {
+      const response = await axios.get(`${apiUrl}/recipes/detail/${recipeId}`);
+
+      const apiResponse = response.data;
+
+      const { recipe } = apiResponse;
+
+      dispatch(closeLoadingActionCreator());
+      dispatch(getRecipeByIdActionCreator(recipe));
+    } catch (error: unknown) {
+      dispatch(closeLoadingActionCreator());
+      dispatch(
+        openFeedbackActionCreator({
+          isError: true,
+          messageFeedback: "¡Ups, no se encuentra la receta a mostrar!",
+        })
+      );
+    }
+  };
+
+  return { loadAllRecipes, deleteRecipe, createRecipe, getRecipeById };
 };
 
 export default useRecipe;
