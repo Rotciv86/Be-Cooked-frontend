@@ -3,6 +3,7 @@ import ProviderWrapper from "../../mocks/providerWrapper";
 import { mockRecipe, mockRecipes } from "../../mocks/recipeMocks/mockRecipe";
 import {
   deleteRecipeActionCreator,
+  getRecipeByIdActionCreator,
   loadAllRecipesActionCreator,
 } from "../../redux/features/recipeSlice/recipeSlice";
 import { openFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
@@ -132,6 +133,53 @@ describe("Given the useRecipe custom hook", () => {
 
       await act(async () => await createRecipe(newRecipe));
 
+      await waitFor(() =>
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          openFeedbackActionCreator(feedbackPayload)
+        )
+      );
+    });
+  });
+
+  describe("When it's method getRecipeById is invoked with a correct id", () => {
+    test("Then it should invoke dispatch with getRecipeByIdActionCreator and return the requested Recipe", async () => {
+      const {
+        result: {
+          current: { getRecipeById },
+        },
+      } = renderHook(() => useRecipe(), {
+        wrapper: ProviderWrapper,
+      });
+
+      const idMock = mockRecipes[0].id;
+      const recipe = mockRecipes[0];
+
+      await act(async () => await getRecipeById(idMock!));
+
+      await waitFor(() =>
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          getRecipeByIdActionCreator(recipe)
+        )
+      );
+    });
+  });
+
+  describe("When it's method getRecipeById is invoked and rejects it", () => {
+    test("Then it should invoke dispatch with openFeedbackAction creator with text '¡Ups, no se encuentra la receta a mostrar!'", async () => {
+      const {
+        result: {
+          current: { getRecipeById },
+        },
+      } = renderHook(() => useRecipe(), {
+        wrapper: ProviderWrapper,
+      });
+      const idMock = mockRecipes[0].id;
+      const feedbackPayload: OpenFeedbackActionPayload = {
+        isError: true,
+        messageFeedback: "¡Ups, no se encuentra la receta a mostrar!",
+      };
+
+      await act(async () => await getRecipeById(idMock!));
       await waitFor(() =>
         expect(dispatchSpy).toHaveBeenCalledWith(
           openFeedbackActionCreator(feedbackPayload)

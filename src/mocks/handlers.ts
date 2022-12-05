@@ -51,6 +51,20 @@ const handlers = [
       ctx.json({ error: "Error, no ha sido posible crear la receta" })
     );
   }),
+
+  rest.get(`${apiUrl}/recipes/detail/${id}`, async (req, res, ctx) => {
+    return await res.once(
+      ctx.status(200),
+      ctx.json({ recipe: mockRecipes[0] })
+    );
+  }),
+
+  rest.get(`${apiUrl}/recipes/detail/${id}`, async (req, res, ctx) => {
+    return await res.once(
+      ctx.status(500),
+      ctx.json({ error: "¡Ups, no se encuentra la receta a mostrar!" })
+    );
+  }),
 ];
 
 export default handlers;
