@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import CreateRecipePage from "../../pages/CreateRecipePage/CreateRecipePage";
+import DetailPage from "../../pages/DetailPage/DetailPage";
 import HomePage from "../../pages/HomePage/HomePage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
@@ -18,6 +19,7 @@ const Layout = (): JSX.Element => {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/create" element={<CreateRecipePage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </LayoutStyled>

@@ -8,7 +8,9 @@ const HomePage = (): JSX.Element => {
       <header className="header">
         <h1 className="header__main-title">Prepara tu propia receta...</h1>
       </header>
-      <Link to={"/create"}>Crea tu receta</Link>
+      <Link to={"/create"} className="create-recipe">
+        Crea tu receta
+      </Link>
       <RecipeList />
     </HomePageStyled>
   );
