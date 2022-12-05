@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const LoaderStyled = styled.span`
+  position: absolute;
+  top: 500px;
+  left: 100px;
   .loader {
     position: relative;
     width: 120px;
