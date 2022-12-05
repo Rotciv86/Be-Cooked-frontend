@@ -7,6 +7,7 @@ import recipeInitialStateMock from "../../../mocks/recipeMocks/recipeInitialStat
 import {
   createRecipeActionCreator,
   deleteRecipeActionCreator,
+  getRecipeByIdActionCreator,
   loadAllRecipesActionCreator,
   RecipeInitialState,
   recipesReducer,
@@ -77,6 +78,21 @@ describe("Given the function recipeSlice", () => {
       );
 
       expect(recipesSliceState).toStrictEqual(expectedRecipesState);
+    });
+  });
+
+  describe("When it is invoked with getRecipeById", () => {
+    test("Then it should recieves and change de recipe state with the requested Recipe", () => {
+      const action = getRecipeByIdActionCreator(mockRecipes[0]);
+      const expectedState = {
+        ...RecipeInitialState,
+        recipes: [],
+        recipe: mockRecipes[0],
+      };
+
+      const newState = recipesReducer(RecipeInitialState, action);
+
+      expect(newState).toStrictEqual(expectedState);
     });
   });
 });
