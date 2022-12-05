@@ -1,9 +1,17 @@
 import styled from "styled-components";
 
-const LoaderStyled = styled.span`
-  position: absolute;
-  top: 500px;
-  left: 100px;
+const LoaderStyled = styled.div`
+  background-color: rgba(255, 255, 255, 0.7);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1;
+
   .loader {
     position: relative;
     width: 120px;
