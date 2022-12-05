@@ -95,27 +95,32 @@ const useRecipe = () => {
     }
   };
 
-  const getRecipeById = async (recipeId: string) => {
-    dispatch(openLoadingActionCreator());
-    try {
-      const response = await axios.get(`${apiUrl}/recipes/detail/${recipeId}`);
+  const getRecipeById = useCallback(
+    async (recipeId: string) => {
+      dispatch(openLoadingActionCreator());
+      try {
+        const response = await axios.get(
+          `${apiUrl}/recipes/detail/${recipeId}`
+        );
 
-      const apiResponse = response.data;
+        const apiResponse = response.data;
 
-      const { recipe } = apiResponse;
+        const { recipe } = apiResponse;
 
-      dispatch(closeLoadingActionCreator());
-      dispatch(getRecipeByIdActionCreator(recipe));
-    } catch (error: unknown) {
-      dispatch(closeLoadingActionCreator());
-      dispatch(
-        openFeedbackActionCreator({
-          isError: true,
-          messageFeedback: "¡Ups, no se encuentra la receta a mostrar!",
-        })
-      );
-    }
-  };
+        dispatch(closeLoadingActionCreator());
+        dispatch(getRecipeByIdActionCreator(recipe));
+      } catch (error: unknown) {
+        dispatch(closeLoadingActionCreator());
+        dispatch(
+          openFeedbackActionCreator({
+            isError: true,
+            messageFeedback: "¡Ups, no se encuentra la receta a mostrar!",
+          })
+        );
+      }
+    },
+    [apiUrl, dispatch]
+  );
 
   return { loadAllRecipes, deleteRecipe, createRecipe, getRecipeById };
 };

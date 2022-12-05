@@ -7,7 +7,7 @@ const HomePageStyled = styled.div`
   display: flex;
   flex-direction: column;
 
-  a {
+  .create-recipe {
     border-radius: ${(props) => props.theme.borderRadius.big};
     font-weight: 400;
     font-size: 20px;

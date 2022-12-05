@@ -19,14 +19,14 @@ const RecipeDetail = (recipe: RecipeDetailProps): JSX.Element => {
       <h3 className="recipe-detail__category">{category}</h3>
       <h4 className="recipe_detail__ingredients">Ingredientes</h4>
       <ul>
-        {ingredients.map((ingredient) => (
-          <li>{ingredient}</li>
+        {ingredients?.map((ingredient, index) => (
+          <li key={index}>{ingredient}</li>
         ))}
       </ul>
       <h4 className="recipe_detail__steps">Preparación</h4>
       <ol>
-        {steps.map((step) => (
-          <li>{step}</li>
+        {steps?.map((step, index) => (
+          <li key={index}>{step}</li>
         ))}
       </ol>
     </RecipeDetailStyled>

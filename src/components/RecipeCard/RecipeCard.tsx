@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useRecipe from "../../hooks/useRecipe/useRecipe";
 import Button from "../Button/Button";
 import RecipeCardStyled from "./RecipeCardStyled";
@@ -13,9 +14,11 @@ const RecipeCard = ({ name, image, id }: RecipeCardProps): JSX.Element => {
 
   return (
     <RecipeCardStyled className="recipe-card">
-      <div className="recipe-card__image">
-        <img src={image} alt={name} height="200" width="382" />
-      </div>
+      <Link to={`/detail/${id}`}>
+        <div className="recipe-card__image">
+          <img src={image} alt={name} height="200" width="382" />
+        </div>
+      </Link>
       <h2 className="recipe-card__title">{name}</h2>
       <Button
         text="BORRAR"
