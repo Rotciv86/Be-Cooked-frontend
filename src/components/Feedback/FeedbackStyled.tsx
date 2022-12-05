@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { mainTheme } from "../../styles/mainTheme";
 
 const FeedbackStyled = styled.div`
-  position: absolute;
-
+  position: fixed;
+  z-index: 1;
   text-align: center;
   display: flex;
   flex-direction: column;
