@@ -3,6 +3,7 @@ import { Recipe } from "../../../types/types";
 
 export interface RecipeState {
   recipes: Recipe[];
+  recipe?: {};
 }
 
 export const RecipeInitialState: RecipeState = {
@@ -29,6 +30,11 @@ const recipesSlice = createSlice({
       ...initialState,
       recipes: [...initialState.recipes, action.payload],
     }),
+
+    getRecipeById: (initialState, action: PayloadAction<Recipe>) => ({
+      ...initialState,
+      recipe: { ...action.payload } as Recipe,
+    }),
   },
 });
 
@@ -38,4 +44,5 @@ export const {
   loadAllRecipes: loadAllRecipesActionCreator,
   deleteRecipe: deleteRecipeActionCreator,
   createRecipe: createRecipeActionCreator,
+  getRecipeById: getRecipeByIdActionCreator,
 } = recipesSlice.actions;
