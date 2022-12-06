@@ -72,7 +72,7 @@ const handlers = [
     if (password === "3333") {
       return res(ctx.status(401), ctx.json({ error: "Credenciales erroneas" }));
     }
-    return res(ctx.status(200), ctx.json({ token: "PacoToken" }));
+    return res(ctx.status(200), ctx.json({ accessToken: "PacoToken" }));
   }),
 ];
 

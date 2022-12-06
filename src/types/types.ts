@@ -25,7 +25,7 @@ export interface OpenFeedbackActionPayload {
 export interface UserLoginData {
   username: string;
   id: string;
-  token: string;
+  accessToken: string;
 }
 
 export interface UserState extends UserLoginData {
