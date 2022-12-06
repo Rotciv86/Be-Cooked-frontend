@@ -26,11 +26,11 @@ const RecipeDetailStyled = styled.article`
   }
 
   ul {
-    padding-left: ${mainTheme.pxToRem(15)};
+    padding-left: ${mainTheme.pxToRem(0)};
   }
 
   ol {
-    padding-left: ${mainTheme.pxToRem(30)};
+    padding-left: ${mainTheme.pxToRem(16)};
   }
 
   ul,
