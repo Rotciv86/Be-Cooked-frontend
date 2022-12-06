@@ -14,6 +14,7 @@ const RecipeCardStyled = styled.article`
   }
   h2 {
     font-size: ${mainTheme.pxToRem(24)};
+    padding: 0 ${mainTheme.pxToRem(16)};
   }
 
   .recipe-card__delete-button {
