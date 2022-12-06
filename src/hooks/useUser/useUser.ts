@@ -50,12 +50,14 @@ const useUser = () => {
     try {
       const response = await axios.post(`${apiUrl}/users/login`, userLoginData);
 
-      const { token } = await response.data;
-      const loggedUser: JwtPayload = decodeToken(token);
+      const { accessToken } = await response.data;
+      const loggedUser: JwtPayload = decodeToken(accessToken);
 
       dispatch(closeLoadingActionCreator());
-      dispatch(loginUserActionCreator({ ...loggedUser, token }));
-      localStorage.setItem("token", token);
+      dispatch(
+        loginUserActionCreator({ ...loggedUser, accessToken: accessToken })
+      );
+      localStorage.setItem("token", accessToken);
       dispatch(
         openFeedbackActionCreator({
           isError: false,

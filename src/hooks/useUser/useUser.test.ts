@@ -75,7 +75,7 @@ describe("Given a useUser custom hook", () => {
       const loginActionPayload = {
         username: "Paco",
         id: "PacoId",
-        token: "PacoToken",
+        accessToken: "PacoToken",
       };
       const feedbackPayload: OpenFeedbackActionPayload = {
         isError: false,

@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 import { UserData } from "../../types/types";
 import Button from "../Button/Button";
-import RegisterFormStyled from "./RegisterFormStyled";
+import LoginFormStyled from "./LoginFormStyled";
 
 const initialFormData: UserData = {
   username: "",
   password: "",
 };
 
-const RegisterForm = (): JSX.Element => {
+const LoginForm = (): JSX.Element => {
   const [formData, setFormData] = useState(initialFormData);
-  const { registerUser } = useUser();
+  const { loginUser } = useUser();
 
   const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
@@ -28,11 +27,11 @@ const RegisterForm = (): JSX.Element => {
       password: formData.password,
     };
 
-    registerUser(formSubmitData);
+    loginUser(formSubmitData);
   };
 
   return (
-    <RegisterFormStyled className="register-form" onSubmit={handleSubmit}>
+    <LoginFormStyled className="register-form" onSubmit={handleSubmit}>
       <div className="register-form__container">
         <div className="register-form__form-group">
           <label htmlFor="username">Escribe tu nombre de usuario</label>
@@ -48,7 +47,7 @@ const RegisterForm = (): JSX.Element => {
         </div>
 
         <div className="register-form__form-group">
-          <label htmlFor="password">Crea una contraseña</label>
+          <label htmlFor="password">Introduce tu contraseña</label>
           <input
             className="register-form__input"
             type="password"
@@ -61,20 +60,14 @@ const RegisterForm = (): JSX.Element => {
           />
         </div>
       </div>
-      <p className="register-form__introduction">
-        ¿Ya dispones de cuenta?&nbsp;
-        <Link className="register-form__link" to={"/login"}>
-          Inicia sesión
-        </Link>
-      </p>
       <Button
-        text="REGÍSTRATE"
+        text="INICIA SESIÓN"
         className="register-button"
         action={() => {}}
         isDisabled={!isNotEmpty}
       />
-    </RegisterFormStyled>
+    </LoginFormStyled>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

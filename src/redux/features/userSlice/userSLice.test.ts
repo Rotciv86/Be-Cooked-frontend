@@ -30,7 +30,7 @@ describe("Given the function userSlice", () => {
       const loginActionPayload: UserLoginData = {
         username: newUserState.username,
         id: newUserState.id,
-        token: newUserState.token,
+        accessToken: newUserState.accessToken,
       };
       const loginUserAction = loginUserActionCreator(loginActionPayload);
       const newState = userReducer(newUserState, loginUserAction);

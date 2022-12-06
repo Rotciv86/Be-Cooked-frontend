@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import CreateRecipePage from "../../pages/CreateRecipePage/CreateRecipePage";
 import DetailPage from "../../pages/DetailPage/DetailPage";
 import HomePage from "../../pages/HomePage/HomePage";
+import LoginPage from "../../pages/LoginPage/LoginPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import { useAppSelector } from "../../redux/hooks";
@@ -18,6 +19,7 @@ const Layout = (): JSX.Element => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/create" element={<CreateRecipePage />} />
         <Route path="/detail/:id" element={<DetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
