@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import useUser from "../../hooks/useUser/useUser";
-import { UserRegisterData } from "../../types/types";
+import { UserData } from "../../types/types";
 import Button from "../Button/Button";
 import RegisterFormStyled from "./RegisterFormStyled";
 
-const initialFormData: UserRegisterData = {
+const initialFormData: UserData = {
   username: "",
   password: "",
 };
@@ -22,7 +22,7 @@ const RegisterForm = (): JSX.Element => {
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    const formSubmitData: UserRegisterData = {
+    const formSubmitData: UserData = {
       username: formData.username,
       password: formData.password,
     };

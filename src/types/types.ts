@@ -1,6 +1,11 @@
-export interface UserRegisterData {
+export interface UserData {
   username: string;
   password: string;
+}
+
+export interface JwtPayload {
+  id: string;
+  username: string;
 }
 
 export interface UiState {
