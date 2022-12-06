@@ -8,16 +8,20 @@ const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 ${mainTheme.pxToRem(-16)};
+  border-bottom: 0.5px solid ${mainTheme.colors.secondary};
 
   .header__navigation {
+    padding: 0 1rem 0 0;
     display: flex;
     gap: 10px;
   }
 
   .header__title {
+    padding: 16px 0 16px 16px;
     font-style: normal;
     font-weight: 700;
-    font-size: ${mainTheme.pxToRem(33)};
+    font-size: ${mainTheme.pxToRem(32)};
     line-height: 56px;
     letter-spacing: 0.024px;
     color: ${mainTheme.colors.main};
@@ -26,6 +30,11 @@ const HeaderStyled = styled.header`
 
   .active {
     font-weight: bold;
+  }
+  @media (max-width: 340px) {
+    .header__title {
+      font-size: ${mainTheme.pxToRem(25)};
+    }
   }
 `;
 

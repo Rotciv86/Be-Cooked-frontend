@@ -29,6 +29,7 @@ const HomePageStyled = styled.div`
     background-size: cover;
 
     &__main-title {
+      padding: 0 ${mainTheme.pxToRem(16)};
       text-align: center;
       line-height: 1;
       margin: 0 auto;
