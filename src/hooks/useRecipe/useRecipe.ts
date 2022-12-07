@@ -54,7 +54,7 @@ const useRecipe = () => {
       dispatch(
         openFeedbackActionCreator({
           isError: false,
-          messageFeedback: "Your recipe was successfully deleted",
+          messageFeedback: "La receta ha sido borrada correctamente",
         })
       );
     } catch (error: unknown) {

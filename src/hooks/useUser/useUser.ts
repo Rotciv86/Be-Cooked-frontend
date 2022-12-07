@@ -26,7 +26,7 @@ const useUser = () => {
       await axios.post(`${apiUrl}/users/sign-up`, userData);
 
       const feedbackSuccessPayload: OpenFeedbackActionPayload = {
-        messageFeedback: `User ${userData.username} registered successfully`,
+        messageFeedback: `Bienvenido ${userData.username}, ha sido registrado correctamente`,
         isError: false,
       };
       dispatch(closeLoadingActionCreator());
@@ -34,7 +34,7 @@ const useUser = () => {
       navigate("/login");
     } catch (error: unknown) {
       const feedbackErrorPayload: OpenFeedbackActionPayload = {
-        messageFeedback: `It was not possible to register: ${(
+        messageFeedback: `No ha sido posible el registro: ${(
           error as AxiosError<AxiosResponseBody>
         ).response?.data.error!}`,
         isError: true,

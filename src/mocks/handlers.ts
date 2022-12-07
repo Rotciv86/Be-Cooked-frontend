@@ -12,7 +12,7 @@ const handlers = [
     if (username === "Bertin Ousbourne") {
       return res(
         ctx.status(409),
-        ctx.json({ error: "This username is already registered" })
+        ctx.json({ error: "Este usuario ya ha sido registrado" })
       );
     }
     return res(ctx.status(201), ctx.json({ user }));
