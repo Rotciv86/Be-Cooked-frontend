@@ -79,7 +79,7 @@ describe("Given a useUser custom hook", () => {
       };
       const feedbackPayload: OpenFeedbackActionPayload = {
         isError: false,
-        messageFeedback: `Bienvenido de nuevo ${user.username}!`,
+        messageFeedback: `Bienvenido ${user.username}!`,
       };
 
       await act(async () => await loginUser(user));
