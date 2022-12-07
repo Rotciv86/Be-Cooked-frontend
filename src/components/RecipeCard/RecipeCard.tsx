@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useRecipe from "../../hooks/useRecipe/useRecipe";
+import { useAppSelector } from "../../redux/hooks";
 import Button from "../Button/Button";
 import RecipeCardStyled from "./RecipeCardStyled";
 
@@ -11,6 +12,7 @@ interface RecipeCardProps {
 
 const RecipeCard = ({ name, image, id }: RecipeCardProps): JSX.Element => {
   const { deleteRecipe } = useRecipe();
+  const { isLogged } = useAppSelector(({ user }) => user);
 
   return (
     <RecipeCardStyled className="recipe-card">
@@ -20,11 +22,13 @@ const RecipeCard = ({ name, image, id }: RecipeCardProps): JSX.Element => {
         </div>
       </Link>
       <h2 className="recipe-card__title">{name}</h2>
-      <Button
-        text="BORRAR"
-        className="recipe-card__delete-button"
-        action={() => deleteRecipe(id)}
-      />
+      {isLogged && (
+        <Button
+          text="BORRAR"
+          className="recipe-card__delete-button"
+          action={() => deleteRecipe(id)}
+        />
+      )}
     </RecipeCardStyled>
   );
 };
