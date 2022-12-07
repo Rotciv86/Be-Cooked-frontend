@@ -37,7 +37,7 @@ describe("Given a useUser custom hook", () => {
         password: "1234",
       };
       const feedbackSuccessPayload: OpenFeedbackActionPayload = {
-        messageFeedback: `User ${newUser.username} registered successfully`,
+        messageFeedback: `Bienvenido ${newUser.username}, ha sido registrado correctamente`,
         isError: false,
       };
 
@@ -57,7 +57,7 @@ describe("Given a useUser custom hook", () => {
       };
       const feedbackErrorPayload: OpenFeedbackActionPayload = {
         messageFeedback:
-          "It was not possible to register: This username is already registered",
+          "No ha sido posible el registro: Este usuario ya ha sido registrado",
         isError: true,
       };
 
