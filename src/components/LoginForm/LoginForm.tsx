@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 import { UserData } from "../../types/types";
 import Button from "../Button/Button";
@@ -60,6 +61,12 @@ const LoginForm = (): JSX.Element => {
           />
         </div>
       </div>
+      <p className="register-form__introduction">
+        ¿Aún no tienes cuenta?&nbsp;
+        <Link className="register-form__link" to={"/register"}>
+          Regístrate
+        </Link>
+      </p>
       <Button
         text="INICIA SESIÓN"
         className="register-button"

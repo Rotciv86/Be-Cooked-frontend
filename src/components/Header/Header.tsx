@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "../../redux/hooks";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
+  const { isLogged } = useAppSelector(({ user }) => user);
   return (
     <HeaderStyled>
       <div>
@@ -12,7 +14,8 @@ const Header = (): JSX.Element => {
 
       <div className="header__navigation">
         <NavLink to={"/"}>Recetas</NavLink>
-        <NavLink to={"/register"}>Regístrate</NavLink>
+        {isLogged && <NavLink to={"/create"}>Crear receta</NavLink>}
+        {!isLogged && <NavLink to={"/login"}>Inicia sesión</NavLink>}
       </div>
     </HeaderStyled>
   );
