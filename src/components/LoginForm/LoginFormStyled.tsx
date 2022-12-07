@@ -26,6 +26,9 @@ const LoginFormStyled = styled.form`
         border: 1px solid ${mainTheme.colors.main};
       }
     }
+    &__link {
+      font-weight: bold;
+    }
   }
 
   label {
