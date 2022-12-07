@@ -6,6 +6,7 @@ const NotFoundPageStyled = styled.main`
   justify-content: center;
   text-align: center;
   gap: 47px;
+  margin-top: 7rem;
 
   .main-content {
     &__main-text {
