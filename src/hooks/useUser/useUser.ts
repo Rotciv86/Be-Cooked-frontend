@@ -61,7 +61,7 @@ const useUser = () => {
       dispatch(
         openFeedbackActionCreator({
           isError: false,
-          messageFeedback: `Bienvenido de nuevo ${userLoginData.username}!`,
+          messageFeedback: `Bienvenido ${userLoginData.username}!`,
         })
       );
       navigate("/");
