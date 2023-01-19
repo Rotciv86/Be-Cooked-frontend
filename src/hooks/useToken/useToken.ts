@@ -8,12 +8,12 @@ const useToken = () => {
   const dispatch = useAppDispatch();
 
   const getToken = useCallback(() => {
-    const accessToken = localStorage.getItem("token");
+    const accessToken = localStorage.getItem("accessToken");
 
     if (accessToken) {
       const user: JwtCustomPayload = decodeToken(accessToken);
 
-      dispatch(loginUserActionCreator({ ...user, accessToken }));
+      dispatch(loginUserActionCreator({ ...user, accessToken: accessToken }));
     }
   }, [dispatch]);
 
