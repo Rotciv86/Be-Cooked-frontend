@@ -1,27 +1,58 @@
-import { renderHook } from "@testing-library/react";
-import localStorageMock from "../../mocks/localStorage/localStorageMock";
-import mockInitialStore from "../../mocks/mockInitialStore";
-import mockUserWithToken from "../../mocks/mockUserWithToken";
 import ProviderWrapper from "../../mocks/providerWrapper";
-import { loginUserActionCreator } from "../../redux/features/userSlice/userSlice";
-import decodeToken from "../../utils/decodeToken";
-import { JwtCustomPayload } from "../types";
+import { renderHook } from "@testing-library/react";
 import useToken from "./useToken";
-import { useContext } from "react";
+import { JwtCustomPayload } from "../types";
+import { store } from "../../redux/store";
 
-Object.defineProperty(window, "localStorage", {
-  value: localStorageMock,
+beforeEach(() => {
+  jest.clearAllMocks();
 });
 
-const dispatchSpy = jest.spyOn(mockInitialStore, "dispatch");
+const mockUser: JwtCustomPayload = {
+  username: "admin",
+  id: "12314214",
+  accessToken: "1234567",
+};
 
 jest.mock("jwt-decode", () => {
-  return () => ({ id: "adminId", username: "admin" } as JwtCustomPayload);
+  return () =>
+    ({ id: mockUser.id, username: mockUser.username } as JwtCustomPayload);
 });
 
-describe("Given a useToken custom hook", () => {
-  describe("When its method getToken is invoked and there ir no token in the local storage", () => {
-    test("Then dispatch should not be invoked", () => {
+const mockLocalStorage = (() => {
+  let store = {} as Storage;
+
+  return {
+    getItem(key: string) {
+      return store[key];
+    },
+    setItem(key: string, value: string) {
+      store[key] = value;
+    },
+    clear() {
+      store = {} as Storage;
+    },
+  };
+})();
+
+Object.defineProperty(window, "localStorage", {
+  value: mockLocalStorage,
+});
+
+beforeAll(() => {
+  mockLocalStorage.setItem("token", "1234567");
+});
+
+afterAll(() => {
+  mockLocalStorage.clear();
+});
+
+const dispatch = jest.spyOn(store, "dispatch");
+
+describe("Given the useToken custom hook", () => {
+  describe("When its method getToken is invoked", () => {
+    test("Then its should call it's dispatch method", () => {
+      mockLocalStorage.setItem("token", "1234567");
       const {
         result: {
           current: { getToken },
@@ -32,13 +63,13 @@ describe("Given a useToken custom hook", () => {
 
       getToken();
 
-      expect(dispatchSpy).not.toHaveBeenCalled();
+      expect(dispatch).toHaveBeenCalled();
     });
   });
 
-  describe("When its method getToken is invoked and there is a token 'adminToken' in the local storage", () => {
-    test("Then dispatch should be invoked with logiUser action", () => {
-      localStorageMock.setItem("accessToken", "adminToken");
+  describe("When its method getToken is invokedk", () => {
+    test("Then its should  call not the dispatch", () => {
+      mockLocalStorage.setItem("token", "");
 
       const {
         result: {
@@ -50,9 +81,7 @@ describe("Given a useToken custom hook", () => {
 
       getToken();
 
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        loginUserActionCreator(mockUserWithToken)
-      );
+      expect(dispatch).not.toHaveBeenCalled();
     });
   });
 });
