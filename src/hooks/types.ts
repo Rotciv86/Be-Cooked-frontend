@@ -7,4 +7,5 @@ export interface AxiosResponseBody {
 export interface JwtCustomPayload extends JwtPayload {
   id: string;
   username: string;
+  accessToken: string;
 }
