@@ -5,7 +5,10 @@ import {
   openFeedbackActionCreator,
   openLoadingActionCreator,
 } from "../../redux/features/uiSlice/uiSlice";
-import { loginUserActionCreator } from "../../redux/features/userSlice/userSlice";
+import {
+  loginUserActionCreator,
+  logoutUserActionCreator,
+} from "../../redux/features/userSlice/userSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import {
   JwtPayload,
@@ -76,7 +79,12 @@ const useUser = () => {
     }
   };
 
-  return { registerUser, loginUser };
+  const logoutUser = () => {
+    window.localStorage.removeItem("token");
+    dispatch(logoutUserActionCreator());
+  };
+
+  return { registerUser, loginUser, logoutUser };
 };
 
 export default useUser;
