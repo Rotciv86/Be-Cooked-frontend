@@ -1,9 +1,18 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import recipeInitialStateMock from "../../mocks/recipeMocks/recipeInitialState";
 import mockSuccessRegister from "../../mocks/uiMocks/mockSuccesRegister";
 import userInitialStateMock from "../../mocks/userMocks/userInitialStateMock";
 import renderWithProviders from "../../utils/testUtils/renderWithProviders";
 import Header from "./Header";
+
+const mockLogout = jest.fn();
+
+jest.mock("../../hooks/useUser/useUser", () => {
+  return () => ({
+    logoutUser: mockLogout,
+  });
+});
 
 describe("Given the Header component", () => {
   describe("When it is rendered and a user is logged", () => {
@@ -54,6 +63,23 @@ describe("Given the Header component", () => {
 
       expect(recipesLink).toBeInTheDocument();
       expect(registerLink).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered and the 'Cerrar sesión' button is clicked", () => {
+    test("Then it should call the 'Cerrar sesión' action", async () => {
+      renderWithProviders(<Header />, {
+        preloadedState: {
+          ui: mockSuccessRegister,
+          user: { ...userInitialStateMock, isLogged: true },
+          recipes: recipeInitialStateMock,
+        },
+      });
+
+      const button = screen.queryByRole("button", { name: "Cerrar sesión" });
+      await userEvent.click(button!);
+
+      expect(mockLogout).toHaveBeenCalled();
     });
   });
 });

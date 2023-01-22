@@ -1,8 +1,12 @@
+import { current } from "@reduxjs/toolkit";
 import { act, renderHook, waitFor } from "@testing-library/react";
 import ProviderWrapper from "../../mocks/providerWrapper";
 import mockLoginUser from "../../mocks/userMocks/mockLoginUser";
 import { openFeedbackActionCreator } from "../../redux/features/uiSlice/uiSlice";
-import { loginUserActionCreator } from "../../redux/features/userSlice/userSlice";
+import {
+  loginUserActionCreator,
+  logoutUserActionCreator,
+} from "../../redux/features/userSlice/userSlice";
 import { store } from "../../redux/store";
 import {
   JwtPayload,
@@ -24,7 +28,7 @@ jest.mock("jwt-decode", () => {
 describe("Given a useUser custom hook", () => {
   const {
     result: {
-      current: { registerUser, loginUser },
+      current: { registerUser, loginUser, logoutUser },
     },
   } = renderHook(() => useUser(), {
     wrapper: ProviderWrapper,
@@ -111,6 +115,15 @@ describe("Given a useUser custom hook", () => {
           openFeedbackActionCreator(feedbackPayload)
         )
       );
+    });
+  });
+
+  describe("When its method logoutUser is invoked", () => {
+    test("THen it should log te user out removing its token form the local storage", () => {
+      const dispatch = jest.spyOn(store, "dispatch");
+      logoutUser();
+
+      expect(dispatch).toHaveBeenCalledWith(logoutUserActionCreator());
     });
   });
 });
