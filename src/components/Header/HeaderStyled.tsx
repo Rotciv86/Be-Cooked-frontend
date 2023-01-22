@@ -12,6 +12,25 @@ const HeaderStyled = styled.header`
   border-bottom: 0.5px solid ${mainTheme.colors.secondary};
 
   .header__navigation {
+    &-logout {
+      color: #113c2b;
+      background-color: #fff;
+      font-weight: 400;
+      font-size: 1rem;
+      border: none;
+      height: auto;
+    }
+
+    &-logout:hover {
+      cursor: pointer;
+      color: #113c2b;
+      background-color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      height: auto;
+    }
+
     padding: 0 1rem 0 0;
     display: flex;
     gap: 10px;
