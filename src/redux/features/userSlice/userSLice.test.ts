@@ -1,21 +1,24 @@
 import { getRandomInitialUserState } from "../../../factories/userFactory";
+import mockLoggedUser from "../../../mocks/userMocks/mockLoggedUser";
 import userInitialStateMock from "../../../mocks/userMocks/userInitialStateMock";
 import { UserLoginData, UserState } from "../../../types/types";
-import { loginUserActionCreator, userReducer } from "./userSlice";
+import {
+  loginUserActionCreator,
+  logoutUserActionCreator,
+  userReducer,
+} from "./userSlice";
 
 describe("Given the function userSlice", () => {
-  const currentUserState = userInitialStateMock;
-
   describe("When it is called and recieves an initial state with an empty feedback and 'unknown' action", () => {
     test("Then it should return a new state with a copy of the empty user login state", () => {
       const unknownAction = {
         type: "user/unknownAction",
-        payload: currentUserState,
+        payload: userInitialStateMock,
       };
 
-      const newUserState = userReducer(currentUserState, unknownAction);
+      const newUserState = userReducer(userInitialStateMock, unknownAction);
 
-      expect(newUserState).toStrictEqual(currentUserState);
+      expect(newUserState).toStrictEqual(userInitialStateMock);
     });
   });
 
@@ -36,6 +39,16 @@ describe("Given the function userSlice", () => {
       const newState = userReducer(newUserState, loginUserAction);
 
       expect(newState).toStrictEqual(expectedState);
+    });
+  });
+
+  describe("When it receives an inital state with an user logged and a logoutUser action", () => {
+    test("Then it should return a copy of at userInitialState", () => {
+      const currentState: UserState = mockLoggedUser;
+      const logoutUserAction = logoutUserActionCreator();
+      const newState = userReducer(currentState, logoutUserAction);
+
+      expect(newState).toStrictEqual(userInitialStateMock);
     });
   });
 });
