@@ -18,7 +18,7 @@ describe("Given the Header component", () => {
 
     test("Then it should show two anchor links with the texts 'Recetas' and 'Crear receta'", () => {
       const recipes = "Recetas";
-      const createRecipe = "Crear receta";
+      const logout = "Cerrar sesión";
 
       renderWithProviders(<Header />, {
         preloadedState: {
@@ -29,10 +29,10 @@ describe("Given the Header component", () => {
       });
 
       const recipesLink = screen.queryByRole("link", { name: recipes });
-      const registerLink = screen.queryByRole("link", { name: createRecipe });
+      const logoutButton = screen.queryByRole("button", { name: logout });
 
       expect(recipesLink).toBeInTheDocument();
-      expect(registerLink).toBeInTheDocument();
+      expect(logoutButton).toBeInTheDocument();
     });
   });
 
